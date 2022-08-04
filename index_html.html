@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Matematico</title>
+	<link href="https://fonts.googleapis.com/css2?family=Manjari&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="main.css">
+		<!-- MIS ESTILOS-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+		<!--toastyfi-->
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+
+
+
+
+	
+
+	<header class="titulo">
+		<center><h1>Juego de Sumas</h1></center>
+	</header>
+
+
+	<div class="container">
+		<!--<header class="header">
+			<h1>logo</h1>
+
+		</header>-->
+		<div class="imagenes1">
+			<img   id="imagen0" class="imagen0" >
+			<!--<img  width="250" height="170" border="0" id="imagen1" class="imagen1" >-->
+			<img   id="imagen1" class="imagen1" >
+			<img   id="imagen2" class="imagen2">
+			<img   id="imagen3" class="imagen3">
+			<img   id="imagen4" class="imagen4">
+			<img   id="imagen5" class="imagen5">
+			<img   id="imagen6" class="imagen6">
+			<img   id="imagen7" class="imagen7">
+		</div>
+		<div class="container1">
+			<div class="elemento1">
+				
+				<p id="presentacion">Quien va a jugar? Ingresa tu nombre</p>
+				<!--<p>Por cada problema resuleto corectamente, sumas puntos. Al salir veras tu puntuacion</p>-->
+				<!--<input id="nombre" type="text">-->
+			</div>
+		</div>
+		<div class="related">
+			
+			<button id="botonNuevo" type="button"  style backgroundcolor="lightgrey" class="botones-partida">Nueva Partida</button>
+		</div>
+		<div class="related">
+			
+			<button id="botonComenzar" type="button"  style backgroundcolor="lightgrey" class="botones-partida">Continuar</button>
+	
+		</div>
+		<div class="related">
+			
+			<button id="botonCalculaPuntaje" type="button"  style backgroundcolor="lightgrey" class="botones-partida">Guardar Puntos</button>
+	
+		</div>
+
+		<div class="related1">
+			<img   id="trofeo0" src="trofeo.png" class="trofeo" >
+		</div>
+		<div class="related1">
+			<img   id="trofeo1" src="trofeo.png" class="trofeo">
+
+		</div>
+		<div class="related1">
+			<img   id="trofeo2" src="trofeo.png" class="trofeo">
+		</div>
+		
+		<main class="content">
+			<article class="article">
+				
+				<p id="suma"></p>
+			</article>
+			<!--<article class="article1">-->
+			
+				<div class="article1">
+					<div class="related">
+						<!--respuesta 1-->
+						<button id="1" type="button" class="boton-respuesta"></button>
+					</div>
+					<div class="related">
+						<!--respuesta 2-->
+						<button id="2" type="button"class="boton-respuesta"></button>
+				
+					</div>
+					<div class="related">
+						<!--respuesta 3-->
+						<button id="3" type="button" class="boton-respuesta"></button>
+				
+					</div>
+				</div>
+			<!--</article>-->
+		</main>
+		<aside class="sidebar">
+			
+			<!--<div>-->
+				<article class="articulo_sidebar1">
+				
+					<p>Como se Juega?</p>
+					<p>Ayuda a tu personaje favorito a resolver los problemas matemáticos</p>
+					<p>Por cada problema resuleto corectamente, sumas puntos que te ayudan a ganar premios. Al salir veras tu puntuacion</p>
+				</article>
+				
+				<article class="articulo_sidebar2">
+				
+					<p id="pJugador"></p>
+					<img  width="100" height="100" border="0" id="avatar0" class="avatar0" >
+					<p id="pMensajeJugador"></p>
+				</article>
+
+				<article class="articulo_sidebar3">
+					<p id="pPuntuacionJugada">Puntos actuales: 0</p>
+					<p id="pPuntuacionAnterior">Puntuacion anterior: 0</p>
+					<p id="pPuntuacionTotal">Puntuacion Total: 0</p>
+
+				</article>
+
+				<article class="articulo_sidebar4">
+
+					<p>En esta jugada resolviste los siguientes problemas</p>
+					<hr/>	
+					<ul id="lListaActual"></ul>
+					<hr/>
+					<p id="pTiempo"></p>
+					<p id="pTipoRespuestas"></p>
+				</article>
+
+				<article class="articulo_sidebar5">
+					<p>En la jugada anterior resolviste</p>
+					<hr/>	
+					<ul id="listaAnt"></ul>
+				</article>
+
+				<!--<div class="elementox" id="myPar">
+					
+					<hr/>	
+			
+				</div>-->
+
+				<!--<div class="articulo-usuario" id="articulo-usuario">-->
+
+					<!--<p>articulo-usuario</p>
+					<p id="pJugadores">sssss</p>
+					<p id="suma">suma</p>-->
+				<!--</div>-->
+				
+
+				
+				
+				
+				
+				<!--<ul id="listaAnt"></ul>-->
+
+
+					
+
+			
+
+				<!--</div>-->
+			<!--</div>-->
+		</aside>
+		<!--
+		<div class="related">
+			<img  width="250" height="170" border="0" id="trofeo0" src="trofeo.png" >
+		</div>
+		<div class="related">
+			<img  width="250" height="170" border="0" id="trofeo1" src="trofeo.png" >
+
+		</div>
+		<div class="related">
+			<img  width="250" height="170" border="0" id="trofeo2" src="trofeo.png" >
+
+		</div>-->
+		<footer class="footer">
+			<h4>footer</h4>
+		</footer>
+	</div>
+
+
+
+
+	<div class="grid">
+
+		<div class="elemento2">
+			
+
+		</div>
+		<div class="elemento3">
+
+		</div>
+		<div class="elemento4">
+			<img src="animacion.gif" width="200" height="170" border="0" id="festejo" hidden="hidden">
+			
+		</div>	
+	</div>
+
+
+
+	<p></p>
+	<!--<input id="nJugadores" type="text">-->
+	<!--<button id="botonJugadores" type="button"  style backgroundcolor="lightgrey">crear Jugadores</button>-->
+	    <div id="div1" style="visibility: hidden">
+        Show a DIV after 15 seconds.
+    </div>
+	
+	<!--<button id="boton1" type="button" onclick="inicio()" style backgroundcolor="lightgrey">Comenzar1</button>-->
+	<!--<button id="boton2" type="button"  style backgroundcolor="lightgrey">Siguiente</button>-->
+	<!--<button id="boton2" type="button" onclick="jugar()" style backgroundcolor="lightgrey">Jugar1</button>-->
+	
+
+	
+
+	
+	<audio id="aplausos" src="sounds/aplausos.mp3" type="audio/mpeg"></audio>
+	<audio id="alerta" src="sounds/notification.mp3" type="audio/mpeg"></audio>
+    <!--<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+	<!--LIBRERIAS-->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<!--mis archivos-->
+	<script src="archivo_html.js"></script>
+
+</body>
+</html>
