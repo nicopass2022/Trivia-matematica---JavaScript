@@ -51,13 +51,13 @@ document.addEventListener('readystatechange', event => {
 
             }
         }else{
-            //document.getElementById("boton1").hidden="hidden";
-            document.getElementById("botonCalculaPuntaje").hidden="hidden";
+
+            //document.getElementById("botonCalculaPuntaje").hidden="hidden";
             document.getElementById("botonComenzar").hidden="hidden";   
         }
     }
 });
-// //****  creo jugadores */
+// //****  MULTIJUGADOR */
 // const jugadores=[]
 // let btnJugadores = document.getElementById("botonJugadores");
 // btnJugadores.addEventListener("click", crearJugadores);
@@ -163,9 +163,9 @@ document.addEventListener('readystatechange', event => {
 
 
 // }
+// // //**fin creo jugadores */
 
-
-//***FETCH API  ***/
+//***FETCH API RICK AND MORTY ***/
 
 fetch('https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8') 
     .then((response)=>{
@@ -194,7 +194,19 @@ fetch('https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8')
             localStorage.setItem("nombreAvatar",document.getElementById(id).alt)
             localStorage.setItem("Avatar",document.getElementById(id).alt)
             localStorage.setItem("AvatarSRC",document.getElementById(id).src)
-            alert("Seleccionaste "+document.getElementById(id).alt)
+            //alert("Seleccionaste a: "+document.getElementById(id).alt)
+            //alert(avatarsrc)
+            Swal.fire({
+                title: 'Personaje',
+                text: "Seleccionaste a: "+localStorage.getItem("nombreAvatar"),
+                //text: "<img src='"+avatarsrc+"' style='width:150px;'>",
+                
+                //iconHtml: '<img src=avatarsrc>',
+                icon: 'success',
+                confirmButtonText: 'Continua',
+                timer:2000,
+                timerProgressBar:"true"
+            })
             for (let i = 0; i < 8; i++){
                 let img="imagen"+i
                 let elemento = document.getElementById(img);
@@ -204,8 +216,6 @@ fetch('https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8')
             let elemento = document.getElementById(id);
             elemento.style.opacity = "1";
             elemento.style.filter  = 'alpha(opacity=90)'; // IE fallback}
-            //alert("Elegiste Jugar con "+elemento.alt)
-            //localStorage.setItem("avatar",nombre)
             document.getElementById("presentacion").innerHTML="Ayuda a "+elemento.alt+" a resolver los siguientes problemas"
             //id.style.opacity= "0.5"
             const usr =localStorage.getItem("usuario")
@@ -213,10 +223,9 @@ fetch('https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8')
             if (usr){
                 inicio()
             }else{
-                //alert("no hay usuario cartel para ingresar usuario")
-
                 Swal.fire({
                     title: "Ingresa tu nombre ",
+                    text: "Seleccionaste a "+elemento.alt,
                     input: "text",
                     showCancelButton: true,
                     confirmButtonText: "Guardar",
@@ -226,7 +235,6 @@ fetch('https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8')
                 .then(resultado => {
                     if (resultado.value) {
                         nombre = resultado.value;
-                        //alert("Hola, " + nombre);
                         localStorage.setItem("usuario",nombre)
                         document.getElementById("pJugador").innerHTML="Jugador: "+nombre
                         inicio()
@@ -251,80 +259,36 @@ fetch('https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8')
     //imagenPersonaje=data[0].image
     //console.log(imagenPersonaje)
     //
-// // //**fin creo jugadores */
+//****DETECTO CUANDO SE CLIECKEA EN NUEVA PARTIDA O COMENZAR
 let btnInicio = document.getElementById("botonComenzar");
 btnInicio.addEventListener("click", inicio);
 let nuevo = document.getElementById("botonNuevo");
 nuevo.addEventListener("click", borrar);
 
 function borrar(){
-    // const eventoFuturo = () =>{
-    //     return new Promise ((resolve,reject)=>{
-    //         let avatar =localStorage.getItem("Avatar")
-    //         if(avatar){
-    //             resolve(avatar)
-                
-    //         }else{
-
-    //             reject(
-    //                 document.querySelectorAll(".imagenes1").forEach(el => {
-            
-    //                     el.addEventListener("click", e => {
-    //                     const id = e.target.getAttribute("id");
-    //                     //console.log("Se ha clickeado el id "+id);
-    //                     //cargo en el sidebar el avatar del personaje seleccionado
-    //                     let avatarsrc= document.getElementById(id).src
-    //                     document.getElementById("avatar0").src=avatarsrc
-    //                     //guardo el nombre del personaje en el local storage al hacer click
-    //                     localStorage.setItem("nombreAvatar",document.getElementById(id).alt)
-    //                     localStorage.setItem("Avatar",document.getElementById(id).alt)
-    //                     alert("nombre personaje"+document.getElementById(id).alt)
-    //                     for (let i = 0; i < 8; i++){
-    //                         let img="imagen"+i
-    //                     let elemento = document.getElementById(img);
-    //                     elemento.style.opacity = "0.1";
-    //                     elemento.style.filter  = 'alpha(opacity=90)'; // IE fallback}
-    //                     }
-    //                     let elemento = document.getElementById(id);
-    //                     elemento.style.opacity = "1";
-    //                     elemento.style.filter  = 'alpha(opacity=90)'; // IE fallback}
-    //                     //alert("Elegiste Jugar con "+elemento.alt)
-    //                     //localStorage.setItem("avatar",nombre)
-    //                     document.getElementById("presentacion").innerHTML="Ayuda a "+elemento.alt+" a resolver los siguientes problemas"
-    //                     //id.style.opacity= "0.5"
-                        
-            
-    //                     });
-                        
-    //                   });
-
-
-
-
-    //             )
-
-
-    //         }
-            
-
-    //     })
-    // } 
+    
+    //limpio el html por si hay datos anteriores
+    document.getElementById("pJugador").innerHTML = ""
+    document.getElementById("pTiempo").innerHTML = ""
+    document.getElementById("pTiempo").innerHTML = ""
+    document.getElementById("pTipoRespuestas").innerHTML = ""
+    document.getElementById("pPuntuacionTotal").innerHTML = " "
+    document.getElementById("suma").innerHTML="";
+    document.getElementById("1").hidden="hidden";
+    document.getElementById("2").hidden="hidden";
+    document.getElementById("3").hidden="hidden";
+    document.getElementById("festejo").hidden=true;
+    document.getElementById("listaAnt").innerHTML="";
+    document.getElementById("lListaActual").innerHTML="";
+    
+    //fin limpiar html
     //borro el local storage
     localStorage.clear()
     //localStorage.setItem("puntuacionAnterior",puntuacionAnterior)
     document.getElementById("pPuntuacionAnterior").innerHTML="Tu puntuacion anterior fue de: "+0
     document.getElementById("pPuntuacionTotal").innerHTML = " Puntuacion total: "+0
     document.getElementById("pPuntuacionJugada").innerHTML = "Puntos actuales: "+ 0
-    //location.reload();
-    //recargo la pagina
-    // Swal.fire({
-    //     title: 'OK!',
-    //     text: 'Ingrese su nombre',
-    //     icon: 'success',
-    //     confirmButtonText: 'Continua',
-    //     timer:2000,
-    //     timerProgressBar:"true"
-    // })
+    
     // subo la opacidad de las imagenes de los personajes
     for (let i = 0; i < 8; i++){
         let img="imagen"+i
@@ -332,16 +296,17 @@ function borrar(){
         elemento.style.opacity = "1";
         elemento.style.filter  = 'alpha(opacity=90)'; // IE fallback}
     }
+    
     //reduzco opacidad las iamgenes de trofeos
     document.getElementById("trofeo0").style.opacity="0.1"
     document.getElementById("trofeo1").style.opacity="0.1"
     document.getElementById("trofeo2").style.opacity="0.1"
     //oculto botones
-    document.getElementById("botonCalculaPuntaje").hidden="hidden";
+    //document.getElementById("botonCalculaPuntaje").hidden="hidden";
     document.getElementById("botonComenzar").hidden="hidden";
     
     Swal.fire({
-        title: "Ingresa tu nombre y selecciona un avatar",
+        title: "Ingresa tu nombre y selecciona un personaje",
         input: "text",
         showCancelButton: true,
         confirmButtonText: "Guardar",
@@ -354,27 +319,14 @@ function borrar(){
             //alert("Hola, " + nombre);
             localStorage.setItem("usuario",nombre)
             //location.reload();
-            alert("selecciona avatar")
+            alert("Selecciona un personaje")
             //inicio()
         }
     });
-
-    // if(document.getElementById("nombre").value){
-    //     inicio()
-    // }else{
-
-    //     alert("por favor ingresa tu nombre")
-    // }
-
-    
-    //document.getElementById("nombre").value ? inicio():alert("ingrese xxxx nombre")
-    //alert("fn borrar" +nombre)
-
 }
 
 function inicio(){
-    //let botonesRespuesta=document.getElementsByClassName("boton-respuesta");
-    //botonesRespuesta.addEventListener("mouseover", salir);
+
     //***CAMBIO COLORES BOTONES***//
     let botonRespuesta1=document.getElementById("1")
     botonRespuesta1.onmouseover=()=>{
@@ -412,45 +364,36 @@ function inicio(){
         }
         //sumo x por cada respuesta correcta
         sumar(){
-            //alert("aca1"+this.scoreTotal)
-            //alert(this.resultadoProblema+"en la funcion")
+
             let result=parseInt(this.resultadoProblema)
-            //alert (result+"valor de result")
-            //switch (true){
             if (result < 10){
                     this.scoreTotal=this.scoreTotal+1;
-                    //alert(this.scoreTotal)
+
                     this.score=1;
             }else{
                 if (result >= 10 && result < 20){
                     this.scoreTotal=this.scoreTotal+5;
-                    //alert(this.scoreTotal)
                     this.score=5;
                 }else{
                     if (this.resultadoProblema>= 20 && this.resultadoProblema < 30){
                         this.scoreTotal=this.scoreTotal+10;
-                        //alert(this.scoreTotal)
                         this.score=10;
 
                     }else{
                         if (this.resultadoProblema>= 30 && this.resultadoProblema < 40){
                             this.scoreTotal=this.scoreTotal+15;
-                            //alert(this.scoreTotal)
                             this.score=15;
                         }else{
                             if (this.resultadoProblema >= 40 && this.resultadoProblema < 50){
                             this.scoreTotal=this.scoreTotal+20;
-                            //alert(this.scoreTotal)
                             this.score=20;
                             }else{
                                 if (this.resultadoProblema>= 50 && this.resultadoProblema < 60){
                                 this.scoreTotal=this.scoreTotal+25;
-                                //alert(this.scoreTotal)
                                 this.score=25;
                                 }else{
                                     if (this.resultadoProblema>= 60){
                                     this.scoreTotal=this.scoreTotal+30;
-                                    //alert(this.scoreTotal)
                                     this.score=30;
                                     }
                                 }
@@ -460,11 +403,8 @@ function inicio(){
                 }
             }
             //segun el scoretotal habilito los trofeos
-           //alert("aca"+this.scoreTotal)
-           //alert(this.opacidadTrofeo)
             if (this.scoreTotal>=51){
                 this.opacidadTrofeo=this.opacidadTrofeo+0.5;
-                //alert("sumo opacidad"+this.opacidadTrofeo)
                 document.getElementById("trofeo0").style.opacity=this.opacidadTrofeo
                 if(this.opacidadTrofeo>=1){
                     document.getElementById("trofeo0").style.opacity="1"
@@ -476,9 +416,11 @@ function inicio(){
                         document.getElementById("trofeo2").style.opacity=this.opacidadTrofeo-2
                     }
                     if(this.opacidadTrofeo>=3){
-                       // document.getElementById("presentacion").innerHTML="Ayuda a "+elemento.alt+" a resolver los siguientes problemas"
-                       alert("felicitaciones") 
-                       alert("Felicitaciones, ayudaste a "+localStorage.getItem("nombreAvatar"))
+                        //alert("felicitaciones") 
+                        //alert("Felicitaciones, ayudaste a "+localStorage.getItem("nombreAvatar"))
+                        //setTimeout(finJuego(), 4000)
+                        //alert("voy a alert con valor 2 para fin de juego")
+                        //alertFunc(2)
                     }
                 }
             }
@@ -493,8 +435,8 @@ function inicio(){
     //Fin Clase suario
 
     //muestro botones
-    document.getElementById("botonCalculaPuntaje").hidden=false;
-    document.getElementById("botonComenzar").hidden=false;
+    //document.getElementById("botonCalculaPuntaje").hidden=false;
+    // document.getElementById("botonComenzar").hidden=false;
     //traigo del localstorage el usr anterior
     const usr =localStorage.getItem("usuario")
     //le asigno a a un valor entre 1 y 3 para respuestas ordenadas random
@@ -571,9 +513,9 @@ function inicio(){
         let avatar =localStorage.getItem("Avatar")
         //alert("verifico si existe avatar anterior"+avatar)
         if (avatar!=null){
-            alert("ok")
+            console.log("ok")
         }else{
-            alert("seleccionar avatar para continuar")
+            alert("selecciona un personaje para continuar")
             //eventoFuturo()
             //alert("1111"+eventoFuturo())
 
@@ -591,7 +533,7 @@ function inicio(){
             //     //setTimeout(alert("aa"), 2000)
             //     alert(avatar)
             // }
-            alert("salgo del while "+ avatar)
+            //alert("salgo del while "+ avatar)
 
             // obtenerAvatar().then((response) =>{
             //     alert("hay avatar"+avatar);
@@ -626,31 +568,22 @@ function inicio(){
     //alert("antes de jugar")
     jugar()
 
-    let botonSalir = document.getElementById("botonCalculaPuntaje");
-    botonSalir.addEventListener("click", salir);
+    //let botonSalir = document.getElementById("botonCalculaPuntaje");
+    //botonSalir.addEventListener("click", salir);
 
 
     function jugar(){
-        //document.getElementsByClassName("boton-respuesta").style.background="#fbf476"
         document.getElementById("1").style.background="#fbf476"
         document.getElementById("2").style.background="#fbf476"
-        //document.getElementById("2").style.backgroundColor="AntiqueWhite"
         document.getElementById("3").style.background="#fbf476"
-        
         function alertFunc(correcto) {
-
             document.getElementById("festejo").hidden=true;
             document.getElementById("suma").innerHTML="";
-            //document.getElementById("1").hidden="hidden";
-            //document.getElementById("2").hidden="hidden";
-            //document.getElementById("3").hidden="hidden";
             document.getElementById("festejo").hidden=true;
             document.getElementById("1").style.background="#fbf476"
             document.getElementById("2").style.background="#fbf476"
             document.getElementById("3").style.background="#fbf476"
             
-            //document.getElementsByClassName("boton-respuesta").style.background="#fbf476"
-            //alert(correcto)
             if(correcto){
                 Swal.fire({
                     title: 'OK!',
@@ -664,7 +597,6 @@ function inicio(){
                 Toastify({
                     text: " sumaste "+Usuario1.score+" puntos",
                     duration: 10000,
-                    //destination: "https://github.com/apvarun/toastify-js",
                     newWindow: true,
                     //close: true,
                     gravity: "bottom", // `top` or `bottom`
@@ -677,7 +609,17 @@ function inicio(){
                 }).showToast();
                 document.getElementById("pPuntuacionJugada").innerHTML = "Puntos actuales: "+ Usuario1.scoreTotal
                 
-                
+                if(correcto==2){
+                    
+                    Swal.fire({
+                        title: 'Felicitaciones',
+                        text: 'Juego terminado, si quieres puedes continuar resolviendo problemas',
+                        icon: 'success',
+                        confirmButtonText: 'Continua',
+                        timer:8000,
+                        timerProgressBar:"true"
+                    })
+                }
                 //jugar()
             }else{
                 Swal.fire({
@@ -690,6 +632,7 @@ function inicio(){
                 })
             }
             jugar()
+            //salir()
             //return true
         }
 
@@ -802,19 +745,9 @@ function inicio(){
         }
         //****SI EL RESULTADO ES CORRECTO*** */
         function resultadoCorrecto(){
-                //alert(Usuario1.scoreTotal)
-                //Usuario1.resultadoProblema=Usuario1.score
-                console.log(resultado)
-                //Usuario1.resultadoProblema=resultado
+                //console.log(resultado)
                 Usuario1.resultadoProblema=document.getElementById(a).innerText
-                //alert(Usuario1.resultadoProblema+" resultado problema")
-                //alert(Usuario1.resultadoProblema + "resultado problema")
-                //alert("voy a sumar")
                 Usuario1.sumar()
-                //alert("ok")
-                //alert(Usuario1.score)
-                //alert(Usuario1.scoreTotal)
-                //alert(Usuario1.score, Usuario1.nombre,Usuario1.score)
                 array.push({id:id_problema, problema:x+"+"+y, res:respuesta, puntos:Usuario1.score})
                 dato="{id:id_problema, problema:x+"+"+y, res:respuesta, puntos:Usuario1.score}"
                 localStorage.setItem("problemas", JSON.stringify(dato))
@@ -822,40 +755,31 @@ function inicio(){
                 localStorage.setItem("problemas", JSON.stringify(dato))
                 let puntuacionAnterior=localStorage.getItem("puntuacionAnterior")
                 puntuacionAnterior=puntuacionAnterior||0
-                //puntuacionAnterior === null ? 0 : puntuacionAnterior;
-                //alert(puntuacionAnterior||0)
-                //alert("puntuacion anterior "+puntuacionAnterior)
                 let puntuacionTotal=parseInt(Usuario1.scoreTotal)+parseInt(puntuacionAnterior)
-            
-            // alert("puntucaion total"+puntuacionTotal)
                 localStorage.setItem("puntuacionActual", puntuacionTotal)
                 localStorage.setItem("puntuacion", puntuacionTotal)
                 document.getElementById("pPuntuacionTotal").innerHTML = " Puntuacion total: "+puntuacionTotal
-                //alert(array)
                 //le sumo 1 para el proximo id
                 id_problema+=1
-                //alert("Felicitaciones "+ nombre+"\n"+"la respuesta es correcta "+ resultado+"\n"+"Sumaste"+Usuario1.score+"puntos"+"\n"+"Continuemos")
-                //console.log(sessionStorage.getItem("usuario"))
                 document.getElementById("festejo").scr="/animacion.gif"
                 document.getElementById(a).style.backgroundColor="green"
-                //aplausos=document.getElementById("aplausos");
-                //aplausos.play();
+                aplausos=document.getElementById("aplausos");
+                aplausos.play();
+                salir()
                 alertFunc(1)
-                // Swal.fire({
-                //     title: 'Ok!',
-                //     text: 'Respuesta Incorrecta',
-                //     icon: 'success',
-                //     confirmButtonText: 'Continua',
-                //     timerProgressBar: "true",
-                //     timer: 2000
-                // })
-                //jugar()
-                //let timeout = setTimeout(alertFunc, 2000);
+                
+                if(Usuario1.opacidadTrofeo==3){
+                    //llamo alert func para alert de final de juego
+                    alertFunc(2)
+                }
         }
-    }
+        
+    //}
+
+    //}
     
     function salir(){
-
+        //alert("saliendo")
         //le quito el primer elemEnto al array que esta vacio
         array.shift()
         localStorage.setItem("problemas1", JSON.stringify(array))
@@ -872,36 +796,25 @@ function inicio(){
             return a.res - b.res;
         });
 
-
-
-        // for (const a of array){
-        //     let li = document.createElement("li");
-        //     li.innerText = "Resolviste "+a.problema+" respondiendo "+a.res+". Sumaste "+a.puntos+" puntos";
-        //     lista1.appendChild(li);
-
-        // }
         let lista = document.getElementById("lListaActual");
 
-
+        //Presento los problemas resuletos
         for (const a of array){
             let li = document.createElement("li");
             li.innerText = "Resolviste "+a.problema+" respondiendo "+a.res+". Sumaste "+a.puntos+" puntos";
             lista.appendChild(li);
-            //alert(a.id)
+           
         }
         //** RECORRO EL ARRAY PARA SABER CUANTOS PROBLEMAS DE 1 Y 2 CIFRAS SE RESOLVIERON*/
         let unaCifra=0
         let dosCifras=0
         for (const a of array){
             a.res<10 ? unaCifra+=1:dosCifras+=1;
-            // if (a.res <10){
-            //     unaCifra+=1;
-            // }else{
-            //     dosCifras+=1
-            // }
+
         }
         document.getElementById("pJugador").innerHTML = "Felicitaciones "+Usuario1.nombre
         document.getElementById("pTiempo").innerHTML = " Resolviste "+array.length + " problemas en "+Usuario1.calculaTiempo()+" segundos"
+        document.getElementById("pTiempo").innerHTML = " Resolviste los problemas en "+Usuario1.calculaTiempo()+" segundos"
         document.getElementById("pTipoRespuestas").innerHTML = " Resolviste "+unaCifra + " problemas de una cifra. Resolviste "+dosCifras + " problemas de dos cifras "
         document.getElementById("pPuntuacionTotal").innerHTML = " Puntuacion total: "+puntuacionTotal
         document.getElementById("suma").innerHTML="";
@@ -909,13 +822,15 @@ function inicio(){
         document.getElementById("2").hidden="hidden";
         document.getElementById("3").hidden="hidden";
         document.getElementById("festejo").hidden=false;
-        let timeout = setTimeout(alertFunc, 2000);
-        document.getElementById(a).style.backgroundColor="grey"
+        //let timeout = setTimeout(alertFunc, 2000);
 
+        document.getElementById(a).style.backgroundColor="grey"
+        //alert("saliendo de salir y voy a jugar")
+        //jugar()
         //***agrego el array al local storage */
 
     }
-
+}
 }
 
 
