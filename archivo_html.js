@@ -277,7 +277,7 @@ function borrar(){
     document.getElementById("1").hidden="hidden";
     document.getElementById("2").hidden="hidden";
     document.getElementById("3").hidden="hidden";
-    document.getElementById("festejo").hidden=true;
+    //document.getElementById("festejo").hidden=true;
     document.getElementById("listaAnt").innerHTML="";
     document.getElementById("lListaActual").innerHTML="";
     
@@ -560,7 +560,9 @@ function inicio(){
     //**desestructuro el Usuario1 */
     const {nombre:usrNombre,score:puntos,scoreTotal}=Usuario1
     //alert(usrNombre+"nombre desestructurado y puntos" + puntos)
-    const array=[{id:0, problema:"---",res:"----",puntos:puntos}]
+    //const array=[{id:0, problema:"---",res:"----",puntos:puntos}]
+    const array=[]
+    //const arrayAnt=[{id:0, problema:"---",res:"----",puntos:puntos}]
     id_problema=1
 
     //const usrNombre={"nombre":Usuario1.nombre}
@@ -577,9 +579,9 @@ function inicio(){
         document.getElementById("2").style.background="#fbf476"
         document.getElementById("3").style.background="#fbf476"
         function alertFunc(correcto) {
-            document.getElementById("festejo").hidden=true;
+            //document.getElementById("festejo").hidden=true;
             document.getElementById("suma").innerHTML="";
-            document.getElementById("festejo").hidden=true;
+            //document.getElementById("festejo").hidden=true;
             document.getElementById("1").style.background="#fbf476"
             document.getElementById("2").style.background="#fbf476"
             document.getElementById("3").style.background="#fbf476"
@@ -730,10 +732,7 @@ function inicio(){
         }
         //***SI EL RESULTADO ES ERRONEO**** */
         function resultadoErroneo(){
-            // document.getElementById("1").style.backgroundColor="red"
-            // document.getElementById("2").style.backgroundColor="red"
-            // document.getElementById("3").style.backgroundColor="red"
-            // document.getElementById(a).style.backgroundColor="green"
+
             document.getElementById("1").style.background="red"
             document.getElementById("2").style.background="red"
             document.getElementById("3").style.background="red"
@@ -750,9 +749,11 @@ function inicio(){
                 Usuario1.sumar()
                 array.push({id:id_problema, problema:x+"+"+y, res:respuesta, puntos:Usuario1.score})
                 dato="{id:id_problema, problema:x+"+"+y, res:respuesta, puntos:Usuario1.score}"
-                localStorage.setItem("problemas", JSON.stringify(dato))
+                //localStorage.setItem("problemas", JSON.stringify(dato))
+                localStorage.setItem("problemas", JSON.stringify(array))
+                localStorage.setItem("problemas1", JSON.stringify(array))
                 const usrJson={"nombre":Usuario1.nombre,"puntos":Usuario1.score}
-                localStorage.setItem("problemas", JSON.stringify(dato))
+                //localStorage.setItem("problemas", JSON.stringify(dato))
                 let puntuacionAnterior=localStorage.getItem("puntuacionAnterior")
                 puntuacionAnterior=puntuacionAnterior||0
                 let puntuacionTotal=parseInt(Usuario1.scoreTotal)+parseInt(puntuacionAnterior)
@@ -761,7 +762,7 @@ function inicio(){
                 document.getElementById("pPuntuacionTotal").innerHTML = " Puntuacion total: "+puntuacionTotal
                 //le sumo 1 para el proximo id
                 id_problema+=1
-                document.getElementById("festejo").scr="/animacion.gif"
+                //document.getElementById("festejo").scr="/animacion.gif"
                 document.getElementById(a).style.backgroundColor="green"
                 aplausos=document.getElementById("aplausos");
                 aplausos.play();
@@ -779,17 +780,12 @@ function inicio(){
     //}
     
     function salir(){
-        //alert("saliendo")
-        //le quito el primer elemEnto al array que esta vacio
-        array.shift()
-        localStorage.setItem("problemas1", JSON.stringify(array))
+
         //sumo puntuacion acumulada
         //let puntuacionAnterior=parseInt(localStorage.getItem("puntuacion"))
         const puntuacionAnterior=parseInt(localStorage.getItem("puntuacion"))|| 0
         //let puntuacionAnterior=parseInt(localStorage.getItem("puntuacion"))
-        //alert(puntuacionAnterior)
         let puntuacionTotal=parseInt(Usuario1.scoreTotal)+puntuacionAnterior
-        //alert(puntuacionAnterior)
         localStorage.setItem("puntuacion", puntuacionTotal)
         //******************paso array al html, primero lo ordeno por el resultado de forma ascendente**********************
         array.sort((a, b) => {
@@ -797,7 +793,7 @@ function inicio(){
         });
 
         let lista = document.getElementById("lListaActual");
-
+        lista.innerHTML=""
         //Presento los problemas resuletos
         for (const a of array){
             let li = document.createElement("li");
@@ -821,7 +817,7 @@ function inicio(){
         document.getElementById("1").hidden="hidden";
         document.getElementById("2").hidden="hidden";
         document.getElementById("3").hidden="hidden";
-        document.getElementById("festejo").hidden=false;
+        //document.getElementById("festejo").hidden=false;
         //let timeout = setTimeout(alertFunc, 2000);
 
         document.getElementById(a).style.backgroundColor="grey"
