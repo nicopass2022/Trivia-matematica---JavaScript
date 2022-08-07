@@ -744,6 +744,7 @@ function inicio(){
         }
         //****SI EL RESULTADO ES CORRECTO*** */
         function resultadoCorrecto(){
+            //alert("aca")
                 //console.log(resultado)
                 Usuario1.resultadoProblema=document.getElementById(a).innerText
                 Usuario1.sumar()
@@ -755,10 +756,14 @@ function inicio(){
                 const usrJson={"nombre":Usuario1.nombre,"puntos":Usuario1.score}
                 //localStorage.setItem("problemas", JSON.stringify(dato))
                 let puntuacionAnterior=localStorage.getItem("puntuacionAnterior")
+               
                 puntuacionAnterior=puntuacionAnterior||0
+                //alert(puntuacionAnterior)
                 let puntuacionTotal=parseInt(Usuario1.scoreTotal)+parseInt(puntuacionAnterior)
+                //alert(puntuacionTotal)
                 localStorage.setItem("puntuacionActual", puntuacionTotal)
                 localStorage.setItem("puntuacion", puntuacionTotal)
+
                 document.getElementById("pPuntuacionTotal").innerHTML = " Puntuacion total: "+puntuacionTotal
                 //le sumo 1 para el proximo id
                 id_problema+=1
@@ -766,6 +771,7 @@ function inicio(){
                 document.getElementById(a).style.backgroundColor="green"
                 aplausos=document.getElementById("aplausos");
                 aplausos.play();
+                //alert("antes de salir")
                 salir()
                 alertFunc(1)
                 
@@ -780,18 +786,22 @@ function inicio(){
     //}
     
     function salir(){
-
+        //alert("dentro de salir")
         //sumo puntuacion acumulada
         //let puntuacionAnterior=parseInt(localStorage.getItem("puntuacion"))
+        
         const puntuacionAnterior=parseInt(localStorage.getItem("puntuacion"))|| 0
-        //let puntuacionAnterior=parseInt(localStorage.getItem("puntuacion"))
-        let puntuacionTotal=parseInt(Usuario1.scoreTotal)+puntuacionAnterior
-        localStorage.setItem("puntuacion", puntuacionTotal)
+        //alert("salir"+puntuacionAnterior)
+        let puntuacionTotal=parseInt(localStorage.getItem("puntuacionActual"))
+        //let puntuacionTotal=parseInt(Usuario1.scoreTotal)+puntuacionAnterior
+        //let puntuacionTotal=parseInt(Usuario1.score)+puntuacionAnterior
+        //localStorage.setItem("puntuacion", puntuacionTotal)
+        //alert("salir1"+puntuacionAnterior +"0"+puntuacionTotal)
         //******************paso array al html, primero lo ordeno por el resultado de forma ascendente**********************
         array.sort((a, b) => {
             return a.res - b.res;
         });
-
+        //alert("dentro de salir1")
         let lista = document.getElementById("lListaActual");
         lista.innerHTML=""
         //Presento los problemas resuletos
@@ -801,6 +811,7 @@ function inicio(){
             lista.appendChild(li);
            
         }
+        //alert("dentro de salir2")
         //** RECORRO EL ARRAY PARA SABER CUANTOS PROBLEMAS DE 1 Y 2 CIFRAS SE RESOLVIERON*/
         let unaCifra=0
         let dosCifras=0
@@ -808,6 +819,7 @@ function inicio(){
             a.res<10 ? unaCifra+=1:dosCifras+=1;
 
         }
+        //alert("dentro de salir3")
         document.getElementById("pJugador").innerHTML = "Felicitaciones "+Usuario1.nombre
         document.getElementById("pTiempo").innerHTML = " Resolviste "+array.length + " problemas en "+Usuario1.calculaTiempo()+" segundos"
         document.getElementById("pTiempo").innerHTML = " Resolviste los problemas en "+Usuario1.calculaTiempo()+" segundos"
@@ -819,7 +831,7 @@ function inicio(){
         document.getElementById("3").hidden="hidden";
         //document.getElementById("festejo").hidden=false;
         //let timeout = setTimeout(alertFunc, 2000);
-
+        //alert("dentro de salir4")
         document.getElementById(a).style.backgroundColor="grey"
         //alert("saliendo de salir y voy a jugar")
         //jugar()
