@@ -116,6 +116,11 @@ body {
     width: 90%; 
     float:right;
   }
+  .avatar0{
+  width:100px;
+  height:100px; 
+  border:0px;
+}
   .sidebar > .articulo_sidebar3{
     background: #808e9b;
     padding: 10px;
